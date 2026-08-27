@@ -82,6 +82,10 @@
             合計: {totalCount}件 / {totalMinutes}分
           </p>
 
+          {logs.length === 0 && (
+            <p>まだ記録がありません</p>
+          )}
+
           <ul>
             {logs.map((log) => (
               <li key={log.id}>
