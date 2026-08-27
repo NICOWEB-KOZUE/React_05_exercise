@@ -14,7 +14,10 @@
 <body>
   <div id="root"></div>
 
+
   <script type="text/babel">
+
+    const { useState } = React;
 
     function App() {
       const logs = [
@@ -22,6 +25,9 @@
         { id: 2, subject: "JavaScript復習", minutes: 45 },
         { id: 3, subject: "CSS練習", minutes: 40 },
       ];
+
+      const [subject, setSubject] = useState("");
+      const [minutes, setMinutes] = useState("");
 
       const totalCount = logs.length;
 
@@ -34,8 +40,24 @@
         <main>
           <h1>学習記録</h1>
 
+          <input
+            value={subject}
+            onChange={(event) => setSubject(event.target.value)}
+            placeholder="科目名を入力"
+          />
+
+          <input
+            value={minutes}
+            onChange={(event) => setMinutes(event.target.value)}
+            placeholder="時間(分)"
+          />
+
+          {/* 動作確認用 */}
+          <p>科目名: {subject}</p>
+          <p>時間: {minutes}</p>
+
           <p>
-            合計: {logs.length}件 / {totalMinutes}分
+            合計: {totalCount}件 / {totalMinutes}分
           </p>
 
           <ul>
