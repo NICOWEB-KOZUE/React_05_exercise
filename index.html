@@ -20,14 +20,22 @@
     const { useState } = React;
 
     function App() {
-      const logs = [
-        { id: 1, subject: "React入門", minutes: 60 },
-        { id: 2, subject: "JavaScript復習", minutes: 45 },
-        { id: 3, subject: "CSS練習", minutes: 40 },
-      ];
-
+      const [logs, setLogs] = useState([]);
       const [subject, setSubject] = useState("");
       const [minutes, setMinutes] = useState("");
+
+      const addLog = () => {
+        const newLog = {
+          id: Date.now(),
+          subject: subject,
+          minutes: Number(minutes),
+        };
+
+        setLogs([...logs, newLog]);
+
+        setSubject("");
+        setMinutes("");
+      };
 
       const totalCount = logs.length;
 
@@ -52,9 +60,7 @@
             placeholder="時間(分)"
           />
 
-          {/* 動作確認用 */}
-          <p>科目名: {subject}</p>
-          <p>時間: {minutes}</p>
+          <button onClick={addLog}>記録する</button>
 
           <p>
             合計: {totalCount}件 / {totalMinutes}分
