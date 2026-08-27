@@ -37,6 +37,14 @@
         setMinutes("");
       };
 
+      const deleteLog = (id) => {
+        const newLogs = logs.filter((log) => {
+          return log.id !== id;
+        });
+
+        setLogs(newLogs);
+      };
+
       const totalCount = logs.length;
 
       const totalMinutes = logs.reduce(
@@ -70,6 +78,10 @@
             {logs.map((log) => (
               <li key={log.id}>
                 {log.subject} {log.minutes}分
+
+                <button onClick={() => deleteLog(log.id)}>
+                  削除
+                </button>
               </li>
             ))}
           </ul>
