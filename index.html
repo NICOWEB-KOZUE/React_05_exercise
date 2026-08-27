@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Test</title>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    function App() {
+      const logs = [
+        { id: 1, subject: "React入門", minutes: 60 },
+        { id: 2, subject: "JavaScript復習", minutes: 45 },
+        { id: 3, subject: "CSS練習", minutes: 40 },
+      ];
+
+      return (
+        <main>
+          <h1>学習記録</h1>
+
+          <ul>
+            {logs.map((log) => (
+              <li key={log.id}>
+                {log.subject} {log.minutes}分
+              </li>
+            ))}
+          </ul>
+        </main>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+  </script>
+</body>
+
+</html>
