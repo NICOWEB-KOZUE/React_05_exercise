@@ -23,8 +23,13 @@
       const [logs, setLogs] = useState([]);
       const [subject, setSubject] = useState("");
       const [minutes, setMinutes] = useState("");
+      const [error, setError] = useState("");
 
       const addLog = () => {
+        if (subject.trim() === "" || minutes === "" || Number(minutes) <= 0) {
+          setError("科目名と1分以上の時間を入力してください");
+          return;
+        }
         const newLog = {
           id: Date.now(),
           subject: subject,
@@ -35,6 +40,7 @@
 
         setSubject("");
         setMinutes("");
+        setError("");
       };
 
       const deleteLog = (id) => {
@@ -69,6 +75,8 @@
           />
 
           <button onClick={addLog}>記録する</button>
+
+          {error && <p>{error}</p>}
 
           <p>
             合計: {totalCount}件 / {totalMinutes}分
